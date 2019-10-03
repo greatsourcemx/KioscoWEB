@@ -1,0 +1,17 @@
+.card {
+  margin-bottom: 15px;
+}
+
+.grid-example {
+    border: 1px solid #eee;
+    margin: 7px 0;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+    color: white;
+    padding: 0;
+}
+
+.flow-text {
+    font-size: 1.68rem;
+}

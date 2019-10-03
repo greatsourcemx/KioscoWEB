@@ -1,0 +1,25 @@
+<div class="jumbotron jumbotron-fluid bg-primary animated fadeIn fast">
+    <div class="container text-center">
+        <a class="navbar-brand" href="#"> <img src="../../assets/img/logotipo.png" alt="IMA logo"> </a>
+    </div>
+</div>
+<div class="container py-3">
+    <div class="row animated fadeIn">
+        <div class="col-md-6 col-lg-6 mx-auto">
+            <div class="card card-body">
+                <h3 class="text-center mb-4">Recuperar Cuenta</h3>
+                <form (ngSubmit)="forma.valid && recuperar()" #forma="ngForm" novalidate="">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="Correo / Número de Empleado" autocomplete="off" name="recuperacion" [(ngModel)]="usuario.correo" required />
+                        </div>
+
+                        <button [disabled]="loading" class="btn btn-lg btn-primary btn-block" type="submit">Recuperar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<app-footer></app-footer>

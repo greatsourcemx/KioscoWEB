@@ -1,0 +1,67 @@
+<h2 class="animated fadeIn">Comedor</h2>
+<div class="card animated fadeIn">
+    <div *ngIf="comeActual" class="card-body text-center">
+        <h1 *ngIf="comeActual.length <= 0">Sin consumo de comedor</h1>
+        <div *ngIf="comeActual.length > 0">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Consumos en la semana <span class="badge badge-success">{{ Total }}</span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="comeActual">
+    <table *ngIf="comeActual.length > 0" class="table table-sm animated fadeIn">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Consumos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of comeActual">
+                <th scope="row">
+                    {{ item.Fecha | fecha }}
+                </th>
+                <td>{{ item.Hora | slice:0:2 }}:{{ item.Hora | slice:2 }}</td>
+                <td>{{ item.Consumos }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br><br>
+<h2>Comedor Anterior</h2>
+<div class="card animated fadeIn">
+    <div *ngIf="ComeAnte" class="card-body text-center">
+        <h1 *ngIf="ComeAnte.length <= 0" class="cuerpo">Sin Consumo de Comedor</h1>
+        <div *ngIf="ComeAnte.length > 0">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Consumos en la semana <span class="badge badge-success">{{ TotalANT }}</span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="ComeAnte">
+    <table *ngIf="ComeAnte.length > 0" class="table table-sm animated fadeIn">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Consumos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ComeAnte">
+                <th scope="row">
+                    {{ item.Fecha | fecha }}
+                </th>
+                <td>{{ item.Hora | slice:0:2 }}:{{ item.Hora | slice:2 }}</td>
+                <td>{{ item.Consumos }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

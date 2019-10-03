@@ -1,0 +1,242 @@
+<h1 class="text-center animated fadeIn">Períodos de Nominas</h1>
+<hr />
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div *ngFor="let item of Split; let primero=first" [ngClass]="{'active' : primero}" class="carousel-item">
+                    <div class="row">
+                        <div *ngFor="let pre of item" class="col-sm-3">
+                            <div style="cursor: pointer;" class="card border" [ngClass]="{'border-primary': nomina.numero == pre.numero}" (click)="getNomina(pre.numero, pre.year) ">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">Período {{ pre.numero }}</h4>
+                                    <hr>
+                                    <p class="card-text">{{ pre.fecInicio }} A {{ pre.fecFinal }}</p>
+                                    <button class="btn btn-primary btn-sm" (click)="descargarPDF( pre )" name="button" type="button">
+                                        <i class="fas fa-file-pdf"></i>	&nbsp;PDF
+                                    </button>&nbsp;
+                                    <button *ngIf="pre.timbrado === 'Comprobante Fiscal Emitido'" (click)="descargarXML( pre )" class="btn btn-primary btn-sm" name="button" type="button">
+                                        <i class="fas fa-file"></i>	&nbsp;XML
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev text-dark" href="#carouselExampleControls" role="button" data-slide="prev">
+                <i class="c-next-icon fas fa-arrow-circle-left" aria-hidden="true"></i>
+            </a>
+            <a class="carousel-control-next text-dark" href="#carouselExampleControls" role="button" data-slide="next">
+                <i class="c-prev-icon fas fa-arrow-circle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pago</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Detalles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pre Nómina</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row animated animated fadeIn fast">
+            <div class="col-md-12 grid-example bg-info">
+                <span class="flow-text">Período {{ nomina.numero }}</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Concepto</th>
+                            <th scope="col">Totales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Deposito</th>
+                            <td>
+                                $ {{ nomina.TotalDeposito | number:'.2-2' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Vales</th>
+                            <td>$ {{ getTotalVales() | number:'.2-2' }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <th class="text-success">$ {{ nomina.TotalDeposito + getTotalVales() | number:'.2-2' }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row animated animated fadeIn fast">
+            <div class="col-md-12 grid-example bg-info">
+                <span class="flow-text">Detalle de Nómina (Per. {{ nomina.numero }})</span>
+            </div>
+        </div>
+        <!--Nomina-->
+        <div class="row animated fadeIn">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h4>Percepciones</h4>
+                    </li>
+                    <li *ngFor="let item of getPercepciones()" class="list-group-item d-flex justify-content-between align-items-center">
+                        <p>{{ item.Descripcion }}</p>
+                        <span class="text-success">${{ item.Percepcion | number:'.2-2' }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="nomina.detNomina" class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h4>Deducciones</h4>
+                    </li>
+                    <li *ngFor="let item of getDeduciones()" class="list-group-item d-flex justify-content-between align-items-center">
+                        <p>{{ item.Descripcion }}</p>
+                        <span class="text-danger">${{ item.Deduccion | number:'.2-2' }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <h5>Total Percepciones</h5>
+                        <span class="text-success">
+                        $ {{ nomina.TotalPercepcion | number:'.2-2' }}
+            </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <h5>Total Deducciones</h5>
+                        <span class="text-danger">
+                        $ {{ nomina.TotalDeduccion | number:'.2-2' }}
+            </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <h5>Vales Despensa</h5>
+                        <span>$ {{ getTotalVales() | number:'.2-2' }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-12">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <h5>Deposito</h5>
+                        <span>
+                        $ {{ nomina.TotalDeposito | number:'.2-2' }}
+            </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <h4>Total</h4>
+                        <span class="text-success font-weight-bold">
+                        $ {{ (nomina.TotalDeposito + getTotalVales()) | number:'.2-2' }}
+              </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--Nomina-->
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="row animated animated fadeIn fast">
+            <div class="col-md-12 grid-example bg-info">
+                <span class="flow-text">Pre Nómina (Per. {{ nomina.numero }})</span>
+            </div>
+        </div>
+        <div *ngIf="nomina.prenomina" class="row">
+            <!-- Prenomina -->
+            <div *ngFor="let pre of nomina.prenomina" class="col-sm-12 col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">{{ pre.Dia }}</h4>
+                        <p class="card-text"><small>{{ pre.Fecha | fecha }}</small></p>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Entrada
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.Entrada | slice:0:2 }}:{{ pre.Entrada | slice:2 }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Salida
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.Salida | slice:0:2 }}:{{ pre.Salida | slice:2 }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Horas
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.Horas }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Extras
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.HoraExtras }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Totales -->
+            <div class="col-sm-12 col-md-4">
+                <div class="card" [ngClass]="(TotalHoras == nomina.prenomina[0].preJorSem) ? 'bg-success text-white' :'bg-white' ">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Horas</h4>
+                        <p class="card-text">{{ TotalHoras | number:'.2-2' }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="card" [ngClass]="(TotalExtras > 0) ? 'bg-success text-white' :'bg-white' ">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Extras</h4>
+                        <p class="card-text">{{ TotalExtras | number:'.2-2' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

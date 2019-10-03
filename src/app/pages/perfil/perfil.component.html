@@ -1,0 +1,113 @@
+<div class="row">
+    <div *ngIf="perfil" class="col-12 col-md-10 offset-md-1 user-details">
+        <div class="user-image">
+            <img [src]="perfil.codigo | imagen" width="220" height="165" alt="Colaborador IMA" class="rounded mx-auto d-block" />
+        </div>
+        <div class="user-info-block border border-primary">
+            <div class="user-heading">
+                <h3>{{ perfil.nombre }}</h3>
+                <!-- <span class="help-block">Chandigarh, IN</span> -->
+            </div>
+            <div *ngIf="msg" [ngClass]="error ? 'alert alert-danger alert alert-dismissible fade show' :
+                      'alert alert-info alert-dismissible fade show'" role="alert">
+                {{ msg }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <ul class="nav nav-pills navigation mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fas fa-address-card"></i> Información</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-unlock-alt"></i> Contraseña</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fas fa-envelope"></i> Email</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-borrar-tab" data-toggle="pill" href="#pills-borrar" role="tab" aria-controls="pills-borrar" aria-selected="false"><i class="fas fa-trash-alt"></i> Eliminar Cuenta</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="row font-weight-bold tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="col-6 col-md-6 pull-left">
+                        Sexo:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.genero }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        Fec. Nacimiento:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.fechaNacimiento | fecha }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        Ent. Nacimiento:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.entidadNac }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        R.F.C.:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.rfc }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        N.S.S.:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.nss }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        CURP:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.curp }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        Fec. Ingreso:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.fechaIngreso | fecha }}
+                    </div>
+                    <div class="col-6 col-md-6 pull-left">
+                        Fec. Antigüedad:
+                    </div>
+                    <div class="col-6 col-md-6 pull-right">
+                        {{ perfil.fechaAnt | fecha }}
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <form (ngSubmit)="frmPass.valid && changeUserPass(); frmPass.valid && frmPass.resetForm();" #frmPass="ngForm" novalidate="">
+                        <div class="form-group">
+                            <label for="actualPass">Contraseña Actual</label>
+                            <input type="password" class="form-control" placeholder="Contraseña Actual" name="password" [(ngModel)]="usuario.password" (keydown)="onKeydown($event)" minlength="8" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Nueva Contraseña</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="Nueva Contraseña" name="newPassword" [(ngModel)]="usuario.nuevoPassword" (keydown)="onKeydown($event)" minlength="8" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirm" placeholder="Confirmar Contraseña" name="confirmPass" [(ngModel)]="confirmPass" (keydown)="onKeydown($event)" minlength="8" required />
+                        </div>
+                        <button [disabled]="!frmPass.valid || loading" type="submit" class="btn btn-primary">
+                          <i [ngClass]="{ 'fa-refresh fa-spin': loading,  'fa-save': !loading }" class="fa"></i>&nbsp;
+                          <span *ngIf="!loading">Actualizar</span>
+                          <span *ngIf="loading">Guardando...</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <app-correo></app-correo>
+                </div>
+                <div class="tab-pane fade" id="pills-borrar" role="tabpanel" aria-labelledby="pills-borrar-tab">
+                    <app-eliminar></app-eliminar>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="jumbotron jumbotron-fluid bg-primary animated fadeIn fast">
+    <div class="container text-center">
+        <a class="navbar-brand" href="#"> <img src="../../assets/img/logotipo.png" alt="IMA logo"> </a>
+    </div>
+</div>
+<div class="container py-3">
+    <div class="row animated fadeIn">
+        <div class="col-md-6 col-lg-6 mx-auto">
+            <div class="card card-body">
+                <h3 class="text-center mb-4">Registrarse</h3>
+                <!-- <app-alert></app-alert> -->
+                <form (ngSubmit)="forma.valid && registrar()" #forma="ngForm" novalidate="">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="email" class="form-control input-lg" placeholder="Correo" name="email" [(ngModel)]="usuario.correo" minlength="3" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #correo="ngModel" required />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" minlength="8" maxlength="12" placeholder="Contraseña" required>
+                        </div>
+
+                        Fecha de Nacimiento
+                        <div class="input-group my-group">
+                            <select name="dia" class="form-control" [(ngModel)]="usuario.dia" required>
+                                <option [ngValue]="0" disabled selected>Día</option>
+                                <option *ngFor="let dia of dias" [value]="dia">{{ dia }}</option>
+                            </select>
+                            <select name="mes" class="form-control" [(ngModel)]="usuario.mes" required>
+                                <option [ngValue]="0" disabled selected>Mes</option>
+                                <option *ngFor="let mes of Meses" [value]="mes.codigo">{{ mes.nombre }}</option>
+                            </select>
+                            <select name="year" class="form-control" [(ngModel)]="usuario.year" required>
+                            <option [ngValue]="0" disabled selected>Año</option>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            </select>
+                        </div>
+                        <hr>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="No Empleado" name="codigo" [(ngModel)]="usuario.codigo" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="NSS (No. Seguro Social)" name="nss" [(ngModel)]="usuario.nss" maxlength="18" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="R.F.C." name="rfc" [(ngModel)]="usuario.rfc" maxlength="18" required />
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="sexo" value="M"
+                                    [(ngModel)]="usuario.sexo" required />Hombre
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="sexo" value="F"
+                                    [(ngModel)]="usuario.sexo" required />Mujer
+                                </label>
+                            </div>
+                        </div>
+
+                        <button [disabled]="loading" class="btn btn-lg btn-primary btn-block" type="submit">Regístrarse</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

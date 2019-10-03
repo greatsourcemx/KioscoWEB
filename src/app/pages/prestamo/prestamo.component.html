@@ -1,0 +1,74 @@
+<h2 class="text-center animated fadeIn">Prestamos</h2>
+<hr>
+<div *ngIf="prestamos.length <= 0" class="card bg-secondary text-white animated fadeIn">
+    <div class="card-body flow-text text-center">
+        Sin Prestamo
+    </div>
+</div>
+<div *ngIf="prestamos.length > 0">
+    <div class="card bg-success text-white animated fadeIn">
+        <div class="card-body">
+            <div class="row flow-text">
+                <div class="col-md-10">
+                    Descuento por periodo:
+                </div>
+                <div class="col-md-2 text-right">
+                    $ {{ TotalDesc | number:'.2-2' }}
+                </div>
+            </div>
+            <div class="row flow-text">
+                <div class="col-md-10">
+                    Prestamo Total:
+                </div>
+                <div class="col-md-2 text-right">
+                    $ {{ TotalPres | number:'.2-2' }}
+                </div>
+            </div>
+            <div class="row flow-text">
+                <div class="col-md-10">
+                    Abonado:
+                </div>
+                <div class="col-md-2 text-right">
+                    $ {{ TotalAbon | number:'.2-2' }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card animated fadeIn">
+        <div class="card-body">
+            <div class="row flow-text">
+                <div class="col-md-10">
+                    Saldo Total:
+                </div>
+                <div class="col-md-2 text-right">
+                    $ {{ (TotalPres - TotalAbon) | number: '.0-2' }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Lista de Prestamos</h3>
+    <hr>
+    <table class="table table-sm animated fadeIn">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Inicio</th>
+                <th scope="col">Tipo de Prestamo</th>
+                <th scope="col">Prestado</th>
+                <th scope="col">Abonado</th>
+                <th scope="col">Saldo</th>
+                <th scope="col">Observación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of prestamos">
+                <th scope="row">{{ item.fecha | fecha }}</th>
+                <td>{{ item.tipo }}</td>
+                <td>$ {{ item.monto | number:'.2-2' }}</td>
+                <td>$ {{ item.total | number:'.2-2' }}</td>
+                <td>$ {{ item.saldo | number:'.2-2' }}</td>
+                <td>{{ item.observacion }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

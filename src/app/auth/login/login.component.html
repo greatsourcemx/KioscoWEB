@@ -1,0 +1,81 @@
+<div class="jumbotron jumbotron-fluid jumbotron-botton bg-primary top animated fadeIn fast">
+    <div class="container">
+        <div class="row animated fadeIn">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <a class="navbar-brand" href="#"> <img src="../../assets/img/logotipo.png" class="logo" alt="IMA logo"> </a>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="card card-container">
+                    <!-- <app-alert></app-alert> -->
+                    <legend>Iniciar Sesión</legend>
+                    <form (ngSubmit)="forma.valid && login()" #forma="ngForm" novalidate="" class="form-signin">
+                        <span id="reauth-email" class="reauth-email"></span>
+
+                        <input type="email" class="form-control" name="correo" placeholder="No Empleado/Correo" [(ngModel)]="usuario.correo" required />
+
+                        <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" placeholder="Contraseña" required />
+
+                        <button [disabled]="!forma.valid" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Ingresar</button>
+                    </form>
+                    <!-- /form -->
+                    <a [routerLink]="['/recuperar']" class="forgot-password">
+                ¿Olvidaste tu contraseña?
+            </a>
+                </div>
+                <!-- /card-container -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="imagenes" class="jumbotron jumbotron-fluid bg-dark top animated fadeIn">
+    <div class="container text-center">
+        <button type="button" [routerLink]="['/registrar']" class="btn btn-outline-info btn-lg">Regístrate Ahora</button>
+        <br /><br />
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div *ngFor="let imag of imagenes; let i = index;" [class]="i === 0 ? 'carousel-item active' : 'carousel-item'">
+                    <img class="d-block w-100 img-fluid img-thumbnail" [src]="imag" alt="First slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid bg-light">
+    <div class="container">
+        <h2 class="text-center">Características</h2>
+        <br />
+        <div class="row text-center"><br>
+            <div class="col-md-4 col-sm-4">
+                <img src="../../assets/img/wallet.png" alt="" class="img-circle" />
+                <h3>Nóminas</h3>
+                <p>Podrás consultar los recibos de nómina y descargar los CFDI. En este portal</p>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <img src="../../assets/img/clock.png" alt="" class="img-circle" />
+                <h3>Pre Nómina</h3>
+                <p>Antes de procesar nómina, puedes conocer el total de horas laboradas y cuales fueron dobles y triples.</p>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <img src="../../assets/img/document.png" alt="" class="img-circle" />
+                <h3>Cartas</h3>
+                <p>Ahora puedes descargar las cartas de trabajo, guardería, visa, etc.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,85 @@
+<h2 class="text-center animated fadeIn">Vacaciones</h2>
+<hr>
+<div *ngIf="vacaciones.fecIngreso" class="alert alert-info animated fast fadeIn" role="alert">
+    <h4 class="alert-heading">Sin vacaciones calculadas!</h4>
+    <p>Por el momento no se ha realizado el cálculo de las vacaciones.</p>
+</div>
+
+<div *ngIf="!vacaciones.fecIngreso" class="row">
+    <div class="col-12">
+        <div class="card animated fadeIn">
+            <div class="card-body">
+                <h5 class="card-title">Saldo de Vacaciones</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Días por Gozar
+                                <span class="badge badge-success badge-pill"> {{ vacaciones.derGozo }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Gozados
+                                <span class="badge badge-secondary badge-pill"> {{ vacaciones.gozados }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Fecha de Ingreso
+                                <span>{{ vacaciones.fecIngreso | fecha }}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Días por Pagar
+                                <span class="badge badge-success badge-pill"> {{ vacaciones.derPago }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Pagados
+                                <span class="badge badge-secondary badge-pill"> {{ vacaciones.pagados }} </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Fecha de Antigüedad
+                                <span>{{ vacaciones.fecAnt | fecha }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /> <br />
+
+<div *ngIf="!vacaciones.fecIngreso" class="row">
+    <div class="col-12">
+        <div class="card animated fadeIn">
+            <div class="card-body">
+                <h5 class="card-title">Vacaciones Tomadas</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Aniversario</th>
+                            <th scope="col">Derecho a Gozo</th>
+                            <th scope="col">Saldo Gozados</th>
+                            <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vaca of vacaciones.detalle">
+                            <th scope="row"> {{ vaca.fecha | fecha }} </th>
+                            <td> {{ vaca.tipo }} </td>
+                            <td> {{ vaca.aniversario }} </td>
+                            <td> {{ vaca.diaGozados }} </td>
+                            <td> {{ vaca.saldoGozados }} </td>
+                            <td> {{ vaca.observaciones }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

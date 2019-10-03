@@ -1,0 +1,43 @@
+.sidebar {
+    position: fixed;
+    top: 87px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+}
+.imagen-user{
+
+}
+
+li a {
+    color: #fff;
+}
+li a:hover {
+    background-color: #007bff;
+}
+
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
+  img{
+    width: 130px;
+    height: 125px;
+  }
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
+  img{
+    width: 160px;
+    height: 145px;
+  }
+}
+@media (min-width:1281px) { /* hi-res laptops and desktops */
+  img{
+    width: 200px;
+    height: 150px;
+  }
+}

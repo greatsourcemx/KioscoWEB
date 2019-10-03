@@ -1,0 +1,74 @@
+<div class="row animated animated fadeIn fast">
+    <div class="col-md-12 grid-example bg-info">
+        <span class="flow-text">Pre Nómina Anterior</span>
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="row">
+            <div *ngFor="let pre of prenomina" class="col-sm-12 col-md-4">
+                <div class="card" [ngClass]="(pre.Horas == pre.preJorDia) ? 'bg-success text-white' :
+          (pre.preEstDia == 1) ? 'bg-white' :
+          (pre.preEstDia == 2) ? 'bg-white' : 'bg-primary' ">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">{{ pre.Dia }}</h4>
+                        <p class="card-text"><small>{{ pre.Fecha | fecha }}</small></p>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Entrada
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.Entrada | slice:0:2 }}:{{ pre.Entrada | slice:2 }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Salida
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.Salida | slice:0:2 }}:{{ pre.Salida | slice:2 }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Horas
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.Horas }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-5 text-left">
+                                    Extras
+                                </div>
+                                <div class="col-md-6 col-5 text-right">
+                                    {{ pre.HoraExtras }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Totales -->
+            <div *ngIf="prenomina.length > 0" class="col-sm-12 col-md-4">
+                <div class="card" [ngClass]="(TotalHoras == prenomina[0].preJorSem) ? 'bg-success text-white' :'bg-white' ">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Horas</h4>
+                        <p class="card-text">{{ TotalHoras }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="card" [ngClass]="(TotalExtras > 0) ? 'bg-success text-white' :'bg-white' ">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Extras</h4>
+                        <p class="card-text">{{ TotalExtras }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

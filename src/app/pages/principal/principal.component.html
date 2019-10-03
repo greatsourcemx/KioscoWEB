@@ -1,0 +1,81 @@
+<h1 class="text-center animated fadeIn">Hola {{ usua.nombre| capitalizado }}
+</h1>
+<hr>
+<div class="row animated fadeIn">
+    <div class="col-md-6">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h4 class="card-title text-center">Última Nómina</h4>
+                <h6 class="card-subtitle mb-2 text-center">Semana {{ principal.peNumero }} de {{ principal.fecInicio | fecha }} al {{ principal.fecFinal | fecha }}</h6>
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-md-6 col-5">
+                            Déposito
+                        </div>
+                        <div class="col-md-6 col-5 text-right">
+                            $ {{ principal.neto | number:'.2-2' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-5">
+                            Vales
+                        </div>
+                        <div class="col-md-6 col-5 text-right">
+                            $ {{ principal.vales | number:'.2-2' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-5">
+                            Total
+                        </div>
+                        <div class="col-md-6 col-5 text-right">
+                            $ {{ principal.neto + principal.vales | number:'.2-2' }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <a [routerLink]="['/nominas']" class="btn btn-primary">Ver más ...</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h4 class="card-title text-center">Información Usuario</h4>
+                <h6 class="card-subtitle mb-2 text-center">Fecha Ingreso: {{ principal.fecIngreso | fecha }}</h6>
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            No Empleado
+                        </div>
+                        <div class="col-md-6 col-4 text-right">
+                            <!-- {{ Usua.codigo }} -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-5">
+                            Ahorro
+                        </div>
+                        <div class="col-md-6 col-5 text-right">
+                            $ {{ principal.ahorro | number:'.2-2' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-5">
+                            Prestamo
+                        </div>
+                        <div class="col-md-6 col-5 text-right">
+                            $ {{ principal.prestamo | number:'.2-2' }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <a href="http://portal.infonavit.org.mx/wps/wcm/connect/infonavit/inicio" target="_blank" class="btn btn-primary">Infonavit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pre Nomina -->
+<app-prenomina></app-prenomina>

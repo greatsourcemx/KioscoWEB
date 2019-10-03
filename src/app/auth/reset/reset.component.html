@@ -1,0 +1,39 @@
+<div class="jumbotron jumbotron-fluid bg-primary animated fadeIn fast">
+    <div class="container text-center">
+        <a class="navbar-brand" href="#"> <img src="../../assets/img/logotipo.png" alt="IMA logo"> </a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row animated fadeIn">
+        <div class="col-md-12">
+            <div *ngIf="msg" class="alert" [ngClass]=" tipo " role="alert">
+                <h4 class="alert-heading">{{ titulo }}</h4>
+                <p>{{ msg }}</p>
+                <hr>
+                <div>
+                    <button type="button" [routerLink]="['/']" class="btn btn-success" name="button">Aceptar</button>
+                </div>
+            </div>
+            <h1 *ngIf="!msg" class="text-center">Cambio de contraseña</h1>
+            <form *ngIf="!msg" (ngSubmit)="frmPass.valid && changeUserPass(); frmPass.valid && frmPass.resetForm();" #frmPass="ngForm" novalidate="">
+                <div class="form-group">
+                    <label for="newPassword">Nueva Contraseña</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Nueva Contraseña" name="newPassword" [(ngModel)]="usuario.password" (keydown)="onKeydown($event)" required />
+                </div>
+                <div class="form-group">
+                    <label for="confirm">Repetir Contraseña</label>
+                    <input type="password" class="form-control" id="confirm" placeholder="Repetir Contraseña" name="confirmPass" (keydown)="onKeydown($event)" [(ngModel)]="confirm" minlength="8" required />
+                </div>
+                <button [disabled]="!frmPass.valid || loading" type="submit" class="btn btn-primary">
+                  <i [ngClass]="{ 'fa-refresh fa-spin': loading,  'fa-save': !loading }" class="fa"></i>	&nbsp;
+                  <span *ngIf="!loading">Actualizar</span>
+                  <span *ngIf="loading">Guardando...</span>
+                </button>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,21 @@
+<div class="jumbotron jumbotron-fluid bg-primary animated fadeIn fast">
+    <div class="container text-center">
+        <a class="navbar-brand" href="#"> <img src="../../assets/img/logotipo.png" alt="IMA logo"> </a>
+    </div>
+</div>
+
+<div class="container mensaje">
+    <div class="row animated fadeIn text-center">
+        <div class="col-md-12">
+            <div class="card">
+                <h4 class="card-header">Mensaje</h4>
+                <div class="card-body">
+                    <h4 class="card-title">{{ msg }}</h4>
+                    <a *ngIf="!loading" [routerLink]="['/']" class="btn btn-primary">Entendido</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
