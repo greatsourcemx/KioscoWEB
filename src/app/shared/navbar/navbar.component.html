@@ -1,39 +1,42 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand text-center" [routerLink]="['/principal']">
-      <img class="logoPrin" src="../../assets/img/logo_blanco.png" alt="IMA" />
-    </a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand text-center" [routerLink]="['/principal']">
+            <img class="logoPrin" src="../../assets/img/logo_blanco.png" alt="IMA" />
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/principal']">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/perfil']">Perfil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/nominas']">Nominas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/prenomina']">Pre Nóminas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/comedor']">Comedor</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/vacaciones']">Vacaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/prestamos']">Prestamos</a>
-        </li>
-      </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <a class="btn btn-danger my-2 my-sm-0" [routerLink]="['/sesion']"><i class="fas fa-sign-out-alt"></i> Salir</a>
-      </form>
-    </div>
-  </nav>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/principal']">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/perfil']">Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/nominas']">Nominas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/prenomina']">Pre Nóminas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/comedor']">Comedor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/vacaciones']">Vacaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/prestamos']">Prestamos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/ahorro']">Ahorro</a>
+                </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <a class="btn btn-danger my-2 my-sm-0" [routerLink]="['/sesion']"><i class="fas fa-sign-out-alt"></i> Salir</a>
+            </form>
+        </div>
+    </nav>
 </header>

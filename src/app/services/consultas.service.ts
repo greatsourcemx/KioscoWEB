@@ -59,6 +59,13 @@ export class ConsultasService {
       })
     );
   }
+  ahorro() {
+    return this.http.get( this.url + '/ahorro' ).pipe(
+      map((data: any) => {
+        return data;
+      })
+    );
+  }
 
   periodos() {
     return this.http.get( this.url + '/periodos' ).pipe(

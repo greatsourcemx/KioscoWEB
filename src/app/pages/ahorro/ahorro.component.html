@@ -1,0 +1,40 @@
+<h2 class="animated fadeIn">Ahorro</h2>
+<div class="card animated fadeIn">
+ <div class="card">
+            <div class="card-body">
+           
+                <table class="table table-bordered">
+                   
+                    <tbody>
+                        <tr>
+                            <th scope="row">Inicio</th>
+                            <td>
+                                {{ fecha }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Descuento por periodo</th>
+                            <td>
+                                $ {{ formula | number:'.2-2' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ahorro Total</th>
+                            <td>
+                                $ {{ total | number:'.2-2' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Retirado</th>
+                            <td>$ {{ cargos  | number:'.2-2' }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-secondary" scope="row">Saldo</th>
+                            <th class="text-success table-secondary">$ {{ saldo | number:'.2-2' }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+</div>

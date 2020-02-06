@@ -7,4 +7,5 @@ export { Prenomina } from './prenomina.model';
 export { Periodos } from './periodos.model';
 export { Nomina } from './nomina.model';
 export { Principal } from './principal.model';
+export { Ahorro } from './ahorro.model';
 export { Perfil } from './perfil.model';

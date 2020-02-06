@@ -23,6 +23,7 @@ import { PerfilComponent } from '../pages/perfil/perfil.component';
 import { CorreoComponent } from '../pages/perfil/correo/correo.component';
 import { EliminarComponent } from '../pages/perfil/eliminar/eliminar.component';
 import { PagesComponent } from './pages.component';
+import { AhorroComponent } from './ahorro/ahorro.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { PagesComponent } from './pages.component';
       PerfilComponent,
       CorreoComponent,
       EliminarComponent,
-      PagesComponent
+      PagesComponent,
+      AhorroComponent
     ],
     exports: [
       HomeComponent,
@@ -52,7 +54,8 @@ import { PagesComponent } from './pages.component';
       NominasComponent,
       PerfilComponent,
       CorreoComponent,
-      EliminarComponent
+      EliminarComponent,
+      AhorroComponent
     ],
     imports: [
       BrowserModule,

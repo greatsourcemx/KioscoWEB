@@ -9,6 +9,8 @@ import { PrestamoComponent } from '../pages/prestamo/prestamo.component';
 import { VacacionesComponent } from '../pages/vacaciones/vacaciones.component';
 import { NominasComponent } from '../pages/nominas/nominas.component';
 import { PerfilComponent } from '../pages/perfil/perfil.component';
+import { AhorroComponent } from '../pages/ahorro/ahorro.component';
+
 
 import { AuthGuardService } from '../services/service.index';
 
@@ -23,6 +25,7 @@ const paginasRoutes: Routes = [
          { path: 'vacaciones', component: VacacionesComponent, data: { titulo: 'Vacaciones' } },
          { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil' } },
          { path: 'nominas', component: NominasComponent, data: { titulo: 'Nóminas' } },
+         { path: 'ahorro', component: AhorroComponent, data: { titulo: 'Ahorro' } },
          { path: '', redirectTo: '/principal', pathMatch: 'full'  },
       ]
    },
